@@ -60,7 +60,7 @@ export default () => {
         </Row>
         {/* <Divider></Divider> */}
         <Row style={{paddingLeft : '20px', marginTop : '0px'}} justify="space-around" >
-          <Col span={15}>
+          <Col flex="50" style={{ display: 'inline-flex', justifyContent: 'start', alignItems: 'center'}}>
             <Tabs defaultActiveKey="Daily" onChange={callback}>
               <TabPane tab="Daily" key="Daily">
                 {/* <CalendarShow/> */}

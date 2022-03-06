@@ -25,6 +25,39 @@ function EngagementDaily() {
         selectedDate,
         grapgType
     } = useContext(TestContext);
+    const [typeLikeCommentPointDimond , setTypeLikeCommentPointDimond] = useState('Like')
+    const [bgLike , setBgLike] = useState('LightBlue')
+    const [bgComment , setBgComment] = useState('white')
+    const [bgPoint , setBgPoint] = useState('white')
+    const [bgDimond , setBgDimond] = useState('white')
+    const onClickType = (value) => {
+        console.log('value',value)
+        setTypeLikeCommentPointDimond(value)
+        if(value==='Like'){
+            setBgLike('LightBlue')
+            setBgComment('white')
+            setBgPoint('white')
+            setBgDimond('white')
+        }
+        else if(value==='Comment'){
+            setBgLike('white')
+            setBgComment('LightBlue')
+            setBgPoint('white')
+            setBgDimond('white')
+        }
+        else if(value==='Point'){
+            setBgLike('white')
+            setBgComment('white')
+            setBgPoint('LightBlue')
+            setBgDimond('white')
+        }
+        else if(value==='Dimond'){
+            setBgLike('white')
+            setBgComment('white')
+            setBgPoint('white')
+            setBgDimond('LightBlue')
+        }
+    }
 
     return(
         <>
@@ -34,6 +67,7 @@ function EngagementDaily() {
                     <Col span={20}>{selectedDate.date}</Col>
                     <Col span={4}><UploadOutlined style={{color : 'DeepSkyBlue'}} /></Col>
                 </Row>
+                <br></br>
                 {grapgType === '1' && <div>
                     <Row>
                         <Col span={12}>
@@ -82,10 +116,29 @@ function EngagementDaily() {
                     </Row>
                 </div>}
                 {grapgType === '2' && <div>
+                    <Row justify="space-around" align="middle">
+                        <Col onClick={()=>onClickType('Like')} style={{border : '1px solid Gainsboro' , borderRadius : '20px' ,padding : '8px' , background:bgLike}}>
+                            <LikeOutlined style={{color : 'DeepSkyBlue'}}/>
+                            <span style={{color : 'DeepSkyBlue' , marginLeft : '6px'}}>Like</span>
+                        </Col>
+                        <Col onClick={()=>onClickType('Comment')} style={{border : '1px solid Gainsboro' , borderRadius : '20px' ,padding : '8px' , background:bgComment}}>
+                            <CommentOutlined style={{color : 'DeepSkyBlue'}}/>
+                            <span style={{color : 'DeepSkyBlue' , marginLeft : '6px'}}>Comment</span>
+                        </Col>
+                        <Col onClick={()=>onClickType('Point')} style={{border : '1px solid Gainsboro' , borderRadius : '20px' ,padding : '8px' , background:bgPoint}}>
+                            <GiftOutlined style={{color : 'DeepSkyBlue'}}/>
+                            <span style={{color : 'DeepSkyBlue' , marginLeft : '6px' ,padding : '8px'}}>Point</span>
+                        </Col>
+                        <Col onClick={()=>onClickType('Dimond')} style={{border : '1px solid Gainsboro' , borderRadius : '20px',padding : '8px' , background:bgDimond}}>
+                            <SketchOutlined style={{color : 'DeepSkyBlue'}}/>
+                            <span style={{color : 'DeepSkyBlue' , marginLeft : '6px' }}>Dimond</span>
+                        </Col>
+                    </Row>
+                    <br></br>
                     {selectedDate.data!==undefined && 
                         <div>
                             <Row justify="space-around" align="middle" style={{border : '1px  solid gray', borderRadius: '25px'}}>
-                                <Col xs={15} sm={15} md={16} lg={16} xl={16}>
+                                <Col xs={15} sm={15} md={14} lg={14} xl={14}>
                                     <Comment
                                         // actions={actions}
                                         author={<a>Han Solo</a>}
@@ -106,8 +159,22 @@ function EngagementDaily() {
                                 </Col>
                                 <Col style={{ height: "200px" }}><Divider type="vertical" style={{ height: "100%" }}/></Col>
                                 <Col xs={6} sm={6} md={8} lg={8} xl={8}>
-                                    <LikeOutlined style={{color : 'DeepSkyBlue',marginRight : '4px'}}/>
-                                    {selectedDate.data.like} people like you
+                                    {typeLikeCommentPointDimond === 'Like' && <div>
+                                        <LikeOutlined style={{color : 'DeepSkyBlue',marginRight : '4px'}}/>
+                                        {selectedDate.data.like} people like you
+                                    </div>}
+                                    {typeLikeCommentPointDimond === 'Comment' && <div>
+                                        <CommentOutlined style={{color : 'DeepSkyBlue',marginRight : '4px'}}/>
+                                        {selectedDate.data.comment} people comment you
+                                    </div>}
+                                    {typeLikeCommentPointDimond === 'Point' && <div>
+                                        <GiftOutlined style={{color : 'DeepSkyBlue',marginRight : '4px'}}/>
+                                        {selectedDate.data.point} point
+                                    </div>}
+                                    {typeLikeCommentPointDimond === 'Dimond' && <div>
+                                        <SketchOutlined style={{color : 'DeepSkyBlue',marginRight : '4px'}}/>
+                                        {selectedDate.data.dimond} dimond
+                                    </div>}
                                 </Col>
                             </Row>
                             <br></br>

@@ -71,9 +71,6 @@ function CalendarShow() {
     const getLastday = new Date(moment(dateToday).add(30, 'days'));
    
     useEffect(() => {    
-        console.log('thDayFromDateToday.length',thDayFromDateToday)
-        console.log('thDayFromDateToday.length',theDate)
-        console.log('thDayFromDateToday.length',getLastday)
         if(dateCalendar.length!==0 && thDayFromDateToday.length===0 || thDayFromDateToday.length < 31){
             let key = 1
             let keyDay = ""
@@ -115,7 +112,6 @@ function CalendarShow() {
                 theDate.setDate(theDate.getDate() + 1)
                 key = key + 1
             }
-            console.log('thDayFromDateToday',thDayFromDateToday)
             setDateCalendar(thDayFromDateToday)
             setSelectedDate(thDayFromDateToday[0])
         }
